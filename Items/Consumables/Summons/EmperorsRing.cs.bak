@@ -1,0 +1,54 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+public class EmperorsRing : ModItem
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Underground Emperor Summon");
+        Tooltip.SetDefault("Summons the Emperor of the Underground");
+    }
+
+    public override void SetDefaults()
+    {
+        item.width = 20;
+        item.height = 20;
+        item.maxStack = 20;
+        item.rare = ItemRarityID.Red;
+        item.useAnimation = 45;
+        item.useTime = 45;
+        item.useStyle = ItemUseStyleID.HoldingUp;
+        item.consumable = true;
+    }
+
+    public override bool CanUseItem(Player player)
+    {
+        // Ensure the boss isn't already spawned
+        return !NPC.AnyNPCs(ModContent.NPCType<postDarkness.NPCs.EmperorOfTheUnderground>());
+    }
+
+    public override bool UseItem(Player player)
+    {
+        if (Main.netMode != NetmodeID.MultiplayerClient)
+        {
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<postDarkness.NPCs.EmperorOfTheUnderground>());
+        }
+        else
+        {
+            NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<postDarkness.NPCs.EmperorOfTheUnderground>());
+        }
+        Main.PlaySound(SoundID.Roar, player.position, 0);
+        return true;
+    }
+
+    public override void AddRecipes()
+    {
+        ModRecipe recipe = new ModRecipe(Mod);
+        recipe.AddIngredient(ItemID.SoulofNight, 10);
+        recipe.AddIngredient(ItemID.SoulofLight, 10);
+        recipe.AddTile(TileID.MythrilAnvil);
+        recipe.SetResult(this);
+        recipe.AddRecipe();
+    }
+}

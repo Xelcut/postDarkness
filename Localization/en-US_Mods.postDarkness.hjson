@@ -1,0 +1,44 @@
+Tiles: {
+	TerranioreTile.MapEntry: Terraniore
+	Terraniore.MapEntry: Terraniore
+	VinoreTile.MapEntry: Vinore
+}
+
+Items: {
+	Terraniore: {
+		DisplayName: Terraniore
+		Tooltip: ""
+	}
+
+	Terrabar: {
+		DisplayName: Terrabar
+		Tooltip: ""
+	}
+
+	TerraniBlade: {
+		DisplayName: Terrani Blade
+		Tooltip: You forged this after a long journey. Now it continues...
+	}
+
+	Vinore: {
+		Tooltip: ""
+		DisplayName: Vinore
+	}
+
+	Vinbar: {
+		DisplayName: Vinbar
+		Tooltip: ""
+	}
+
+	EmperorsRing: {
+		DisplayName: Emperor's Ring
+		Tooltip: This is the type of ring the Emperors wore.
+	}
+}
+
+NPCs: {
+	EmperorOfTheUnderground.DisplayName: Emperor Of The Underground
+	EmperorOfSpace.DisplayName: Emperor Of Space
+	EmperorOfSpaceBody.DisplayName: Emperor Of Space Body
+	EmperorOfSpaceTail.DisplayName: Emperor Of Space Tail
+}
